@@ -43,6 +43,7 @@ def run_infinite_post_data_loop():
             for row in pin_selected_row:
                 pin_result = dict(row._mapping)
 
+                #To send JSON messages you need to follow this structure
                 invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-5-Step-3/topics/0e172e8c4bc3.pin"
                 payload = json.dumps({
                     "records": [
@@ -64,6 +65,7 @@ def run_infinite_post_data_loop():
             for row in geo_selected_row:
                 geo_result = dict(row._mapping)
 
+                #To send JSON messages you need to follow this structure
                 invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-5-Step-3/topics/0e172e8c4bc3.geo"
                 payload = json.dumps({
                     "records": [
@@ -83,6 +85,7 @@ def run_infinite_post_data_loop():
             for row in user_selected_row:
                 user_result = dict(row._mapping)
 
+                #To send JSON messages you need to follow this structure
                 invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-5-Step-3/topics/0e172e8c4bc3.user"
                 payload = json.dumps({
                     "records": [
