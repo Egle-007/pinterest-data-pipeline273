@@ -42,7 +42,7 @@ def run_infinite_post_data_loop():
             
             for row in pin_selected_row:
                 pin_result = dict(row._mapping)
-                
+
                 invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-5-Step-3/topics/0e172e8c4bc3.pin"
                 payload = json.dumps({
                     "records": [
@@ -64,11 +64,37 @@ def run_infinite_post_data_loop():
             for row in geo_selected_row:
                 geo_result = dict(row._mapping)
 
+                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-5-Step-3/topics/0e172e8c4bc3.geo"
+                payload = json.dumps({
+                    "records": [
+                        {
+                        #Data should be send as pairs of column_name:value, with different columns separated by commas       
+                        "value": {"index": geo_result["ind"], "timestamp": str(geo_result["timestamp"]), "latitude": geo_result["latitude"], "longitude": geo_result["longitude"], "country": geo_result["country"]}
+                        }
+                    ]
+                })
+                headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
+                response = requests.request("POST", invoke_url, headers=headers, data=payload)
+                print(response.status_code)
+
             user_string = text(f"SELECT * FROM user_data LIMIT {random_row}, 1")
             user_selected_row = connection.execute(user_string)
             
             for row in user_selected_row:
                 user_result = dict(row._mapping)
+
+                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-5-Step-3/topics/0e172e8c4bc3.user"
+                payload = json.dumps({
+                    "records": [
+                        {
+                        #Data should be send as pairs of column_name:value, with different columns separated by commas       
+                        "value": {"index": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "age": user_result["age"], "date_joined": str(user_result["date_joined"])}
+                        }
+                    ]
+                })
+                headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
+                response = requests.request("POST", invoke_url, headers=headers, data=payload)
+                print(response.status_code)
             
             print(pin_result)
             print(geo_result)
@@ -79,34 +105,3 @@ if __name__ == "__main__":
     run_infinite_post_data_loop()
     print('Working')
     
-
-# example_df = {"index": 1, "name": "Maya", "age": 25, "role": "engineer"}
-
-# invoke_url = "https://YourAPIInvokeURL/YourDeploymentStage/topics/YourTopicName"
-# #To send JSON messages you need to follow this structure
-# payload = json.dumps({
-#     "records": [
-#         {
-#         #Data should be send as pairs of column_name:value, with different columns separated by commas       
-#         "value": {"index": example_df["index"], "name": example_df["name"], "age": example_df["age"], "role": example_df["role"]}
-#         }
-#     ]
-# })
-
-# headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
-# response = requests.request("POST", invoke_url, headers=headers, data=payload)
-
-# {'index', 'unique_id', 'title', 'description', 'poster_name', 'follower_count', 'tag_list', 'is_image_or_video', 'image_src', 'downloaded', 'save_location', 'category'}
-
-# pin_result
-
-# payload = json.dumps({
-#     "records": [
-#         {
-#         #Data should be send as pairs of column_name:value, with different columns separated by commas       
-#         "value": {"index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], "description": pin_result["description"], "poster_name": pin_result["poster_name"],
-#                    "follower_count": pin_result["follower_count"], "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], "image_src": pin_result["image_src"], 
-#                    "downloaded": pin_result["downloaded"], "save_location": pin_result["save_location"], "category": pin_result["category"]}
-#         }
-#     ]
-# })
