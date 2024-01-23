@@ -44,17 +44,17 @@ def run_infinite_post_data_loop():
                 pin_result = dict(row._mapping)
 
                 #To send JSON messages you need to follow this structure
-                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-9-Task-2/streams/streaming-0e172e8c4bc3-pin/record"
+                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-9-Task-2/stream/streaming-0e172e8c4bc3-pin/record"
                 payload = json.dumps({
                     "StreamName": "streaming-0e172e8c4bc3-pin",
                     "Data": {
-                            #Data should be send as pairs of column_name:value, with different columns separated by commas      
-                            "index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], "description": pin_result["description"], "poster_name": pin_result["poster_name"],
-                                "follower_count": pin_result["follower_count"], "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], "image_src": pin_result["image_src"], 
-                                "downloaded": pin_result["downloaded"], "save_location": pin_result["save_location"], "category": pin_result["category"]
-                            },
-                            "PartitionKey": "PK-pin"
-                            })
+                        #Data should be send as pairs of column_name:value, with different columns separated by commas      
+                        "index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], "description": pin_result["description"], "poster_name": pin_result["poster_name"],
+                        "follower_count": pin_result["follower_count"], "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], "image_src": pin_result["image_src"], 
+                        "downloaded": pin_result["downloaded"], "save_location": pin_result["save_location"], "category": pin_result["category"]
+                        },
+                        "PartitionKey": "PK-pin"
+                        })
                 headers = {'Content-Type': 'application/json'}
                 response = requests.request("PUT", invoke_url, headers=headers, data=payload)
                 print(response.status_code)
@@ -66,15 +66,15 @@ def run_infinite_post_data_loop():
                 geo_result = dict(row._mapping)
 
                 #To send JSON messages you need to follow this structure
-                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-9-Task-2/streams/streaming-0e172e8c4bc3-geo/record"
+                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-9-Task-2/stream/streaming-0e172e8c4bc3-geo/record"
                 payload = json.dumps({
                     "StreamName": "streaming-0e172e8c4bc3-geo",
                     "Data": {
-                            #Data should be send as pairs of column_name:value, with different columns separated by commas      
-                            "index": geo_result["ind"], "timestamp": str(geo_result["timestamp"]), "latitude": geo_result["latitude"], "longitude": geo_result["longitude"], "country": geo_result["country"]
-                            },
-                            "PartitionKey": "PK-geo"
-                            })
+                        #Data should be send as pairs of column_name:value, with different columns separated by commas      
+                        "index": geo_result["ind"], "timestamp": str(geo_result["timestamp"]), "latitude": geo_result["latitude"], "longitude": geo_result["longitude"], "country": geo_result["country"]
+                        },
+                        "PartitionKey": "PK-geo"
+                        })
                 headers = {'Content-Type': 'application/json'}
                 response = requests.request("PUT", invoke_url, headers=headers, data=payload)
                 print(response.status_code)
@@ -86,15 +86,15 @@ def run_infinite_post_data_loop():
                 user_result = dict(row._mapping)
 
                 #To send JSON messages you need to follow this structure
-                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-9-Task-2/streams/streaming-0e172e8c4bc3-user/record"
+                invoke_url = "https://afm0un5nrb.execute-api.us-east-1.amazonaws.com/PDP-Mile-9-Task-2/stream/streaming-0e172e8c4bc3-user/record"
                 payload = json.dumps({
                     "StreamName": "streaming-0e172e8c4bc3-user",
                     "Data": {
-                            #Data should be send as pairs of column_name:value, with different columns separated by commas      
-                            "index": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "age": user_result["age"], "date_joined": str(user_result["date_joined"])
-                            },
-                            "PartitionKey": "PK-user"
-                            })
+                        #Data should be send as pairs of column_name:value, with different columns separated by commas      
+                        "index": user_result["ind"], "first_name": user_result["first_name"], "last_name": user_result["last_name"], "age": user_result["age"], "date_joined": str(user_result["date_joined"])
+                        },
+                        "PartitionKey": "PK-user"
+                        })
                 headers = {'Content-Type': 'application/json'}
                 response = requests.request("PUT", invoke_url, headers=headers, data=payload)
                 print(response.status_code)
