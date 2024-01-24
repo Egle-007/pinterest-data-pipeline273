@@ -14,6 +14,9 @@ random.seed(100)
 class AWSDBConnector:
 
     def __init__(self):
+        '''
+        Class connects to AWS RDS and returns connection engine.
+        '''
 
         self.HOST = "pinterestdbreadonly.cq2e8zno855e.eu-west-1.rds.amazonaws.com"
         self.USER = 'project_user'
@@ -28,7 +31,7 @@ class AWSDBConnector:
 
 new_connector = AWSDBConnector()
 
-
+#  Define a function that uses the connection engine to extract posting, geo-location and user data from AWS DB and streams it to AWS Kinesis. 
 def run_infinite_post_data_loop():
     while True:
         sleep(random.randrange(0, 2))
