@@ -14,6 +14,11 @@ random.seed(100)
 class AWSDBConnector:
     '''
     Class connects to AWS RDS and returns connection engine.
+
+    Methods:
+    --------
+    create_db_connector: 
+        Returns engine.
     '''
 
     def __init__(self):
