@@ -12,12 +12,11 @@ random.seed(100)
 
 
 class AWSDBConnector:
+    '''
+    Class connects to AWS RDS and returns connection engine.
+    '''
 
     def __init__(self):
-        '''
-        Class connects to AWS RDS and returns connection engine.
-        '''
-
         self.HOST = "pinterestdbreadonly.cq2e8zno855e.eu-west-1.rds.amazonaws.com"
         self.USER = 'project_user'
         self.PASSWORD = ':t%;yCY3Yjg'
