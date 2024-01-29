@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 
 #Define params for Submit Run Operator
 notebook_task = {
-    'notebook_path': '/Users/kasalotas@yahoo.com/Mount-S3-to-Databricks-2024-01-04',
+    'notebook_path': '/Users/kasalotas@yahoo.com/Mount-S3-to-Databricks',
 }
 
 
