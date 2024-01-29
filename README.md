@@ -170,6 +170,14 @@ The repository can be cloned by typing the following commands in the command lin
 
     git clone -c https://github.com/Egle-007/pinterest-data-pipeline273.git
 
+## Prerequisits
+
+    - Apache Airflow
+    - Kafka-Python
+    - Requests
+    - Sqlalchemy
+    - Urllib
+
 ## Other
 
 ### Main tools
